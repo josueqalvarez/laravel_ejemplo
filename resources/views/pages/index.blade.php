@@ -3,6 +3,7 @@
       <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:py-32">
         <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Questions</h2>
         <div class="mt-10 grid gap-6 ">
+        
           @foreach ($questions as $question)
             <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
               <a 
@@ -22,6 +23,7 @@
               </div>
             </div>
           @endforeach
+          
         </div>
       </div>
     </div>

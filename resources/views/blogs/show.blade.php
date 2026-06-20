@@ -6,16 +6,17 @@
 
                 <div class="">
                     <h2 class="text-base/7 font-semibold text-white w-fit px-4 rounded-md"
-                        style="background: {{ $question->category->color }};"> {{ $question->category->name }} </h2>
-                    <h4 class="my-2 font-semibold text-white"> {{ $question->user->name }} </h4>
-                    <time class="text-sm text-gray-400"> {{ $question->created_at->format('F j, Y') }} </time>
+                        style="background: {{ $blog->category->color }};"> 
+                        {{ $blog->category->name }} </h2>
+                    <h4 class="my-2 font-semibold text-white"> {{ $blog->user->name }} </h4>
+                    <time class="text-sm text-gray-400"> {{ $blog->created_at->format('F j, Y') }} </time>
                     <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">
-                        {{ $question->title }}</p>
-                    <p class="mt-6 text-lg/8 text-gray-300"> {{ $question->body }}</p>
+                        {{ $blog->title }}</p>
+                    <p class="mt-6 text-lg/8 text-gray-300"> {{ $blog->body }}</p>
                     <dl class="mt-10 max-w-xl space-y-8 text-base/7 text-gray-400 lg:max-w-none">
 
 
-                        @foreach ($question->answers as $answer)
+                        @foreach ($blog->comments as $comment)
                             <div class="relative pl-9">
                                 <dt class="inline font-semibold text-white">
                                     <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true"
@@ -24,10 +25,10 @@
                                             d="M5.5 17a4.5 4.5 0 0 1-1.44-8.765 4.5 4.5 0 0 1 8.302-3.046 3.5 3.5 0 0 1 4.504 4.272A4 4 0 0 1 15 17H5.5Zm3.75-2.75a.75.75 0 0 0 1.5 0V9.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0l-3.25 3.5a.75.75 0 1 0 1.1 1.02l1.95-2.1v4.59Z"
                                             clip-rule="evenodd" fill-rule="evenodd" />
                                     </svg>
-                                    {{ $answer->user->name }} </dt>
+                                    {{ $comment->user->name }} </dt>
                                     <br>
                                 <dd class="inline">
-                                    {{ $answer->content }}
+                                    {{ $comment->content }}
                                 </dd>
                             </div>
                         @endforeach

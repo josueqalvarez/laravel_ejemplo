@@ -43,21 +43,41 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        Comment::factory(100)->create(
-            [
-                'user_id' => fn() => User::inRandomOrder()->first()->id,
-                'commentable_id' => fn() => $answers->random()->id,
-                'commentable_type' => fn() => Answer::class,
-            ]
-        );
-
-        Blog::factory(10)->create(
+        $blogs = Blog::factory(10)->create(
             [
                 'user_id' => fn() => User::inRandomOrder()->first()->id,
                 'category_id' => fn() => $categories->random()->id,
             ]
         );
 
+        # Comments for answers
+        Comment::factory(100)->create(
+            [
+                'user_id' => fn() => User::inRandomOrder()->first()->id,
+                'commentable_id' => fn() => $answers->random()->id,
+                'commentable_type' => fn() => Answer::class,
+                ]
+                );
+                
+        # Comments for questions
+        Comment::factory(100)->create(
+            [
+                'user_id' => fn() => User::inRandomOrder()->first()->id,
+                'commentable_id' => fn() => $questions->random()->id,
+                'commentable_type' => fn() => Question::class,
+                ]
+        );
+                
+        # Comments for blogs
+        Comment::factory(100)->create(
+            [
+                'user_id' => fn() => User::inRandomOrder()->first()->id,
+                'commentable_id' => fn() => $blogs->random()->id,
+                'commentable_type' => fn() => Blog::class,
+            ]
+        );
+
+        
 
     
     }
