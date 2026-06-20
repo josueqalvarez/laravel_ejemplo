@@ -36,19 +36,31 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $answers = Answer::factory(100)->create(
-            [
-                'question_id' => fn() => $questions->random()->id,
-                'user_id' => fn() => User::inRandomOrder()->first()->id,
-            ]
-        );
-
         $blogs = Blog::factory(10)->create(
             [
                 'user_id' => fn() => User::inRandomOrder()->first()->id,
                 'category_id' => fn() => $categories->random()->id,
             ]
         );
+
+        
+        $questionAnswers = Answer::factory(100)->create(
+            [
+                'user_id' => fn() => User::inRandomOrder()->first()->id,
+                'answerable_id' => fn() => $questions->random()->id,
+                'answerable_type' => fn() => Question::class,
+            ]
+        );
+
+        $blogAnswers = Answer::factory(100)->create(
+            [
+                'user_id' => fn() => User::inRandomOrder()->first()->id,
+                'answerable_id' => fn() => $blogs->random()->id,
+                'answerable_type' => fn() => Blog::class,
+            ]
+        );
+
+        $answers = $questionAnswers->concat($blogAnswers);
 
         # Comments for answers
         Comment::factory(100)->create(
@@ -57,7 +69,7 @@ class DatabaseSeeder extends Seeder
                 'commentable_id' => fn() => $answers->random()->id,
                 'commentable_type' => fn() => Answer::class,
                 ]
-                );
+            );
                 
         # Comments for questions
         Comment::factory(100)->create(
