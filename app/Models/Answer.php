@@ -20,4 +20,9 @@ class Answer extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    public function answerable()
+    {
+        return $this->morphTo();
+    }
 }

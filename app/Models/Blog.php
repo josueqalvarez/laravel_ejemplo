@@ -27,4 +27,9 @@ class Blog extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    public function answers()
+    {
+        return $this->morphMany(Answer::class, 'answerable');
+    }
 }
