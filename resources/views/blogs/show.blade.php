@@ -12,15 +12,17 @@
                     <time class="text-sm text-gray-400"> {{ $blog->created_at->format('F j, Y') }} </time>
                     <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">
                         {{ $blog->title }}</p>
-                    <p class="mt-6 text-lg/8 text-gray-300"> {{ $blog->body }}</p>
+                    <p class="mt-6 text-lg/8 text-gray-300"> {{ $blog->content }}</p>
                     <dl class="mt-10 max-w-xl space-y-8 text-base/7 text-gray-400 lg:max-w-none">
 
 
                         @foreach ($blog->answers as $answer)
                             <x-layouts.comment_answer :lista="$answer" />
 
+
                             @foreach ($answer->comments as $comment)
-                                <x-layouts.comment_answer :lista="$comment" :margin_left="'2.5em'" />
+                                <livewire:comment :commentable="$comment" :margin_left="'2.5em'" />
+                                {{-- <x-layouts.comment_answer :lista="$comment" :margin_left="'2.5em'" /> --}}
                             @endforeach
                         @endforeach
 
